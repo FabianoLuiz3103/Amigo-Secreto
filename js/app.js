@@ -25,7 +25,8 @@ function adicionar(){
 }
 
 function atualizarSorteio(){
-    document.getElementById('lista-sorteio') = '';
+    document.getElementById('lista-sorteio').innerHTML = '';
+    document.getElementById("btn-sortear").removeAttribute('disabled');
 }
 
 function atualizarListaAmigos(){
@@ -46,6 +47,12 @@ function atualizarListaAmigos(){
         tagAmigosIncluidos.appendChild(p);
     }
 
+}
+
+function excluirAmigo(indice){
+    amigosIncluidos.splice(indice, 1)
+    atualizarSorteio();
+    atualizarListaAmigos();
 }
 
 
