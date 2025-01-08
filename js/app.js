@@ -1,10 +1,11 @@
 let amigosIncluidos = [];
+const  erroVazio = document.getElementById('erro-vazio');
+const erroSorteio = document.getElementById('erro-sorteio');
 
 function adicionar(){
 
     let nomeInformado = document.getElementById('nome-amigo').value.trim();
     let tagNome = document.getElementById('nome-amigo');
-    let erroVazio = document.getElementById('erro-vazio');
     if(!nomeInformado){
         erroVazio.textContent = 'Erro! Informe um nome.';
         tagNome.classList.add('form__input_erro');
@@ -18,7 +19,37 @@ function adicionar(){
     tagAmigosIncluidos.textContent = amigosIncluidos.join(", ");
 
     document.getElementById('nome-amigo').value = null;
+
+    atualizarSorteio();
+    atualizarListaAmigos();
 }
+
+function atualizarSorteio(){
+    document.getElementById('lista-sorteio') = '';
+}
+
+function atualizarListaAmigos(){
+
+    let tagAmigosIncluidos = document.getElementById('lista-amigos');
+
+    tagAmigosIncluidos.innerHTML = '';
+
+    for(let i = 0; i < amigosIncluidos.length; i++){
+
+        let p = document.createElement('p');
+        p.textContent = amigosIncluidos[i];
+
+        p.addEventListener('click', function() {
+            excluirAmigo(i);
+        });
+
+        tagAmigosIncluidos.appendChild(p);
+    }
+
+}
+
+
+
 
 function verificarNomesIguais(n){
     let contador = 1;
@@ -33,10 +64,12 @@ function verificarNomesIguais(n){
 }
 
 function sortear(){
-    let erroSorteio = document.getElementById('erro-sorteio');
+    
     if(amigosIncluidos.length >= 3){
 
         embaralha(amigosIncluidos);
+        console.log(amigosIncluidos);
+        
     
         let sorteio =  document.getElementById('lista-sorteio');
         for(let i = 0; i < amigosIncluidos.length; i++){
@@ -50,6 +83,9 @@ function sortear(){
         }
 
         erroSorteio.textContent = '';
+
+        document.getElementById("btn-sortear").setAttribute('disabled', true);
+
     } else {
         erroSorteio.textContent = 'Erro! Mínimo de 3 pessoas para realizar o sorteio!';
     }
@@ -74,5 +110,9 @@ function reiniciar(){
     document.getElementById('nome-amigo').value = null;
     document.getElementById('lista-amigos').textContent = ' ';
     document.getElementById('lista-sorteio').innerHTML = ' ';
+    document.getElementById('nome-amigo').classList.remove('form__input_erro');
+    erroVazio.textContent ="";
+    erroSorteio.textContent = '';
+    document.getElementById("btn-sortear").removeAttribute('disabled');
 
 }
