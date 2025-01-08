@@ -38,7 +38,8 @@ function atualizarListaAmigos(){
     for(let i = 0; i < amigosIncluidos.length; i++){
 
         let p = document.createElement('p');
-        p.textContent = amigosIncluidos[i];
+        p.textContent = `${amigosIncluidos[i]}, `;
+        p.style.display = 'inline';
 
         p.addEventListener('click', function() {
             excluirAmigo(i);
