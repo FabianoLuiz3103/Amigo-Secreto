@@ -2,13 +2,34 @@ let amigosIncluidos = [];
 
 function adicionar(){
 
-    let nomeInformado = document.getElementById('nome-amigo').value;
-    amigosIncluidos.push(nomeInformado);
+    let nomeInformado = document.getElementById('nome-amigo').value.trim();
+    let tagNome = document.getElementById('nome-amigo');
+    let erroVazio = document.getElementById('erro-vazio');
+    if(!nomeInformado){
+        erroVazio.textContent = 'Erro! Informe um nome.';
+        tagNome.classList.add('form__input_erro');
+    } else {
+        erroVazio.textContent ="";
+        tagNome.classList.remove('form__input_erro');
+        amigosIncluidos.push(verificarNomesIguais(`${nomeInformado}`));
+    }
     
     let tagAmigosIncluidos = document.getElementById('lista-amigos');
     tagAmigosIncluidos.textContent = amigosIncluidos.join(", ");
 
     document.getElementById('nome-amigo').value = null;
+}
+
+function verificarNomesIguais(n){
+    let contador = 1;
+    let nome = n;
+
+    while(amigosIncluidos.includes(nome)){
+        contador++;
+        nome = `${nome}-${contador}`
+    }
+    return nome;
+
 }
 
 function sortear(){
