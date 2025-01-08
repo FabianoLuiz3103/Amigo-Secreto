@@ -30,7 +30,7 @@ function atualizarSorteio(){
 }
 
 function atualizarListaAmigos(){
-
+    console.log(amigosIncluidos);
     let tagAmigosIncluidos = document.getElementById('lista-amigos');
 
     tagAmigosIncluidos.innerHTML = '';
@@ -61,11 +61,11 @@ function excluirAmigo(indice){
 
 function verificarNomesIguais(n){
     let contador = 1;
-    let nome = n;
+    let nome = n.toUpperCase();
 
     while(amigosIncluidos.includes(nome)){
         contador++;
-        nome = `${nome}-${contador}`
+        nome = `${n.toUpperCase()}-${contador}`
     }
     return nome;
 
