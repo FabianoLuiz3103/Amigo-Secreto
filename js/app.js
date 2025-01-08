@@ -33,19 +33,28 @@ function verificarNomesIguais(n){
 }
 
 function sortear(){
-    
-    embaralha(amigosIncluidos);
-    
-    let sorteio =  document.getElementById('lista-sorteio');
-    for(let i = 0; i < amigosIncluidos.length; i++){
+    let erroSorteio = document.getElementById('erro-sorteio');
+    if(amigosIncluidos.length >= 3){
 
-        if(i == amigosIncluidos.length-1){
-            sorteio.innerHTML = sorteio.innerHTML+ amigosIncluidos[i] + ' --> ' + amigosIncluidos[0] + '<br>'
-        } else {
-            sorteio.innerHTML = sorteio.innerHTML+ amigosIncluidos[i] + ' --> ' + amigosIncluidos[i+1] + '<br>'
+        embaralha(amigosIncluidos);
+    
+        let sorteio =  document.getElementById('lista-sorteio');
+        for(let i = 0; i < amigosIncluidos.length; i++){
+    
+            if(i == amigosIncluidos.length-1){
+                sorteio.innerHTML = sorteio.innerHTML+ amigosIncluidos[i] + ' --> ' + amigosIncluidos[0] + '<br>';
+            } else {
+                sorteio.innerHTML = sorteio.innerHTML+ amigosIncluidos[i] + ' --> ' + amigosIncluidos[i+1] + '<br>';
+            }
+          
         }
-      
+
+        erroSorteio.textContent = '';
+    } else {
+        erroSorteio.textContent = 'Erro! Mínimo de 3 pessoas para realizar o sorteio!';
     }
+    
+   
     
 }
 
