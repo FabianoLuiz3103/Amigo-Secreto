@@ -6,9 +6,9 @@ function adicionar(){
     amigosIncluidos.push(nomeInformado);
     
     let tagAmigosIncluidos = document.getElementById('lista-amigos');
-    tagAmigosIncluidos.textContent = amigosIncluidos;
+    tagAmigosIncluidos.textContent = amigosIncluidos.join(", ");
 
-    document.getElementById('nome-amigo').value = ' ';
+    document.getElementById('nome-amigo').value = null;
 }
 
 function sortear(){
@@ -37,4 +37,12 @@ function embaralha(lista) {
         [lista[indice - 1], lista[indiceAleatorio]] = 
             [lista[indiceAleatorio], lista[indice - 1]];
     }
+}
+
+function reiniciar(){
+    amigosIncluidos = [];
+    document.getElementById('nome-amigo').value = null;
+    document.getElementById('lista-amigos').textContent = ' ';
+    document.getElementById('lista-sorteio').innerHTML = ' ';
+
 }
